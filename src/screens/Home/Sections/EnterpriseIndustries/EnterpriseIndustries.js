@@ -30,23 +30,26 @@ export default function EnterpriseIndustries() {
   const visibleItems = getVisibleItems();
 
   return (
-    <section className="bg-black text-white py-20 px-6 md:px-12 rounded-3xl">
-      <div className="max-w-7xl mx-auto text-center">
-        <p className="text-sm text-gray-400 uppercase mb-2">Industries</p>
-        <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-12">
+    <section className="bg-black text-white py-20 px-6 md:px-12 ">
+      <div className="max-w-7xl mx-auto text-center ">
+        <p className="text-[16px] text-gray-400 mb-1">Industries</p>
+        <span className="bg-gradient-to-r from-[#00C2D1] to-[#2684FF] bg-clip-text text-transparent font-500 text-[48px] ">
           Enterprise-Ready
-        </h2>
+        </span>
 
         {/* Icons Section */}
-        <div className="flex justify-center items-center gap-16 mb-12">
+        <div className="flex justify-center items-center gap-16 mb-12 mt-10">
           {visibleItems.map((item, index) => {
             const isCenter = index === 1;
             return (
               <div
                 key={item.label}
-                className="flex flex-col items-center w-82 h-100"
+                className={`flex flex-col items-center ${
+                  isCenter ? "z-10" : ""
+                }`}
               >
-                <div className="relative w-32 h-32 flex items-center justify-center">
+                <div className="relative w-72 h-72 flex items-center justify-center">
+                  {/* Animated ring for center item */}
                   {isCenter && (
                     <svg
                       className="absolute w-full h-full animate-spin-slow"
@@ -55,22 +58,42 @@ export default function EnterpriseIndustries() {
                       <circle
                         cx="50"
                         cy="50"
-                        r="40"
+                        r="48.5"
                         stroke="currentColor"
-                        strokeWidth="4"
+                        strokeWidth="1"
                         fill="none"
-                        strokeDasharray="188"
-                        strokeDashoffset="47"
+                        strokeDasharray="280"
+                        strokeDashoffset="110"
                         strokeLinecap="round"
-                        className="text-cyan-500"
+                        className="text-[#00C2D1]"
                       />
                     </svg>
                   )}
 
-                  {/* Circle container with icon and label inside */}
-                  <div className="w-28 h-28 rounded-full bg-cyan-800/30 text-cyan-300 flex flex-col items-center justify-center p-3 z-10">
-                    <div className="text-3xl mb-1">{item.icon}</div>
-                    <p className="text-xs text-center">{item.label}</p>
+                  {/* Circle container */}
+                  <div
+                    className={`
+        rounded-full flex flex-col items-center justify-center
+        ${isCenter ? "w-72 h-72 text-cyan-200" : "w-48 h-48 text-cyan-300"}
+      `}
+                    style={{
+                      background: `linear-gradient(135deg, #2684FF00 0%, #00C2D1 100%)`,
+                    }}
+                  >
+                    <div
+                      className={`${
+                        isCenter ? "text-5xl mb-3" : "text-4xl mb-2"
+                      }`}
+                    >
+                      {item.icon}
+                    </div>
+                    <p
+                      className={`text-center ${
+                        isCenter ? "text-base font-medium" : "text-sm"
+                      }`}
+                    >
+                      {item.label}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -86,7 +109,7 @@ export default function EnterpriseIndustries() {
           >
             ←
           </button>
-          <p className="text-sm max-w-xl">
+          <p className="text-[16px] max-w-md">
             Sees, hears, and reads like a human. Understands voice, video, tone,
             and emotion in real-time – detecting urgency, frustration.
           </p>

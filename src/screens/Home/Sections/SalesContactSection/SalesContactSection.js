@@ -1,115 +1,126 @@
 import React, { useState } from "react";
+import Img1 from "./Images/Ellipse 11755.png";
 
 const features = [
   {
-    title: "Sales CX AI",
-    desc: "Instantly understands customer needs, adapts to every conversation, and drives conversions with precision.",
-    version: "service 1.0",
+    title: "Grounded in your business intelligence",
+    desc: "Connect Formi to your CRM, tools, and workflows - agents learn how your business actually runs, and execute accordingly.",
+    version: "no 1.0",
   },
   {
-    title: "Service CX AI",
-    desc: "",
-    version: "service 2.0",
+    title: "Context-aware, always",
+    desc: "Connect Formi to your CRM, tools, and workflows - agents learn how your business actually runs, and execute accordingly.",
+    version: "no 2.0",
   },
   {
-    title: "Marketing CX AI",
-    desc: "",
-    version: "service 3.0",
+    title: "Coordinated, not siloed",
+    desc: "Connect Formi to your CRM, tools, and workflows - agents learn how your business actually runs, and execute accordingly.",
+    version: "no 3.0",
   },
   {
-    title: "Operations CX AI",
-    desc: "",
-    version: "service 4.0",
+    title: "Built to work everywhere",
+    desc: "Connect Formi to your CRM, tools, and workflows - agents learn how your business actually runs, and execute accordingly.",
+    version: "no 4.0",
   },
 ];
 
 export default function SalesContactSection() {
-  const [expanded, setExpanded] = useState(false);
+  const [expandedItems, setExpandedItems] = useState({});
 
-  const toggleExpand = () => setExpanded(!expanded);
+  const toggleExpand = (index) => {
+    setExpandedItems((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
   return (
-    <section className="bg-white py-20 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <section className="bg-white py-10 px-6 md:px-40">
+      <div className="max-w-8xl mx-auto grid md:grid-cols-2 gap-20 items-start">
         {/* LEFT: Gradient Card with Contact Form */}
-        <div className="bg-gradient-to-br from-cyan-300 via-cyan-400 to-cyan-500 p-10 rounded-2xl flex items-center justify-center shadow-xl relative">
-          <div className="bg-white p-6 rounded-xl shadow-md max-w-sm w-full text-center z-10">
-            <h2 className="text-lg font-semibold text-gray-900 mb-2">
+
+        <div
+          className="bg-cover bg-center w-full max-w-2xl rounded-xl shadow-2xl h-[700px] flex justify-center items-center"
+          style={{ backgroundImage: `url("/Rectangle 484.png")` }} // Removed the curly braces and $ symbol
+        >
+          <div className="bg-white p-6 rounded-xl shadow text-center max-w-[300px]">
+            <h3 className="text-[24px] font-bold mb-2 mx-auto max-w-[150px]">
               Contact our sales team
-            </h2>
-            <p className="text-sm text-gray-600 mb-4">
+            </h3>
+            <p className="text-sm text-gray-500 mb-4">
               Have questions or ready to get started? Fill out the form below,
               and we’ll get back to you as soon as possible.
             </p>
             <input
               type="email"
               placeholder="nico@default.com"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              className="w-full border border-gray-300 rounded-md px-4 py-2 text-sm mb-3 focus:outline-none focus:ring-2 focus:ring-sky-300"
             />
-            <button className="w-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white py-2 rounded-md font-semibold">
+            <button className="px-6 py-2 text-white font-500 rounded-full bg-gradient-to-r from-[#00C2D1] to-[#2684FF] hover:opacity-90 transition text-[16px]">
               Request A Demo →
             </button>
-
-            <div className="mt-4 flex justify-center items-center space-x-4 text-xs text-gray-500">
-              <span>© Coefficient</span>
-              <span>runway</span>
+            <div className="mt-4 flex justify-center gap-4 text-xs text-gray-400">
+              <span>🧩 Coefficient</span>
               <span>= Equals</span>
-              <span>Harmonic</span>
+              <span>🎵 Harmonic</span>
             </div>
           </div>
         </div>
 
         {/* RIGHT: Feature Checklist */}
-        <div className="space-y-8">
-          <div>
-            <p className="text-sm text-gray-400 uppercase mb-2">
-              Enterprise Integration, Simplified
-            </p>
-            <h2 className="text-4xl font-bold leading-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-                Deploy in Days.
-              </span>
-              <br />
-              Not Quarters.
-            </h2>
-          </div>
+        <div>
+          <p className="text-gray-400 mt-4 mb-6  text-[16px]">
+            Enterprise Integration, Simplified
+          </p>
+          <span className="bg-gradient-to-r from-[#00C2D1] to-[#2684FF] bg-clip-text text-transparent  sm:text-[48px] font-500 ">
+            Deploy in Days.
+          </span>
+          <br />
+          <span className="sm:text-[48px] font-500 ">Not Quarters.</span>
 
+          {/* Feature Cards */}
           <div className="relative h-[550px] overflow-hidden">
             <div className="absolute top-0 left-0 right-0 bottom-0 overflow-y-auto pr-2">
               {/* Feature Cards */}
               <div className="mt-10 space-y-4">
                 {features.map((item, i) => {
-                  const isExpandable = i === 0;
-                  const isExpanded = expanded && isExpandable;
+                  const isExpanded = expandedItems[i];
 
                   return (
                     <div
                       key={i}
-                      onClick={isExpandable ? toggleExpand : undefined}
-                      className={`cursor-pointer p-5 rounded-xl border border-gray-200 transition-all duration-300 ${
-                        isExpandable
-                          ? isExpanded
-                            ? "bg-white shadow-lg scale-[1.02]"
-                            : "bg-white shadow"
-                          : "bg-gray-50"
+                      onClick={() => toggleExpand(i)}
+                      className={`cursor-pointer p-5 relative rounded-xl border border-gray-200 transition-all duration-300 ${
+                        isExpanded ? "bg-white shadow-lg" : "bg-gray-50"
                       }`}
                     >
                       <div className="flex items-start justify-between">
                         <div className="flex items-center space-x-3">
-                          <div className="w-2.5 h-2.5 bg-sky-500 rounded-full mt-1" />
-                          <h4 className="text-lg font-medium">{item.title}</h4>
+                          <div className="w-2.5 h-2.5 bg-sky-500 rounded-full " />
+                          <h4 className="text-[20px] font-400 text-[#080808]">
+                            {item.title}
+                          </h4>
                         </div>
-                        <span className="text-sm text-gray-400">
+                        <span className="text-[16px] text-[#080808B]">
                           {item.version}
                         </span>
                       </div>
 
                       {/* Expanding Section */}
                       <div
-                        className={`transition-all duration-300 overflow-hidden ${
-                          isExpanded ? "max-h-40 mt-2" : "max-h-0"
+                        className={`transition-all duration-300 overflow-hidden  ${
+                          isExpanded ? "max-h-40 mt-3" : "max-h-0"
                         }`}
                       >
-                        <p className="text-gray-500 text-sm">{item.desc}</p>
+                        <p className="text-gray-500 text-[16px]">{item.desc}</p>
+                        {isExpanded ? (
+                          <img
+                            src={Img1}
+                            alt="Img1"
+                            className="w-20 h-15  absolute right-0 bottom-0"
+                          />
+                        ) : (
+                          ""
+                        )}
                       </div>
                     </div>
                   );
