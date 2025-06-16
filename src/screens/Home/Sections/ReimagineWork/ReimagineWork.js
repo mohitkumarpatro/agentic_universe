@@ -54,7 +54,7 @@ export default function ReimagineWork() {
                 <img
                   src={feature.icon}
                   alt={`Feature ${idx + 1}`}
-                  className="w-[60px] h-[60px] object-contain"
+                  className="w-[60px] h-[60px] object-contain hover:scale-125"
                 />
                 <h3 className="text-[22px] font-500 mt-8 mb-4 text-left min-h-[56px] border-b-2 pb-5">
                   <p>
