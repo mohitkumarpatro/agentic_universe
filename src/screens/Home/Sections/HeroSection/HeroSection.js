@@ -1,8 +1,7 @@
-import React from "react";
-import Img1 from "./Images/Group 1321317678.png";
+import React, { useRef, useState } from "react";
+import video1 from "./Images/5854603-uhd_4096_2160_24fps.mp4";
 
 export const HeroSection = () => {
-  // Company logos data
   const companyLogos = [
     { name: "Casper", opacity: "opacity-40" },
     { name: "SONOS", opacity: "opacity-60" },
@@ -12,6 +11,19 @@ export const HeroSection = () => {
     { name: "Whereby", opacity: "opacity-35" },
     { name: "Pendulum", opacity: "opacity-50" },
   ];
+
+  const videoRef = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const togglePlay = () => {
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setIsPaused(false);
+    } else {
+      videoRef.current.pause();
+      setIsPaused(true);
+    }
+  };
 
   return (
     <section className="pt-40 pb-16 bg-gradient-to-b from-blue-50/30 to-white">
@@ -28,7 +40,7 @@ export const HeroSection = () => {
             </span>
           </h1>
 
-          <h2 className="text-4xl md:text-[48px]  text-[#080808] mb-8 max-w-4xl mx-auto font-400">
+          <h2 className="text-4xl md:text-[48px] text-[#080808] mb-8 max-w-4xl mx-auto font-400">
             Hire Agentic AI That Works Like a Team
           </h2>
 
@@ -39,11 +51,9 @@ export const HeroSection = () => {
 
           {/* Company Logos */}
           <div className="relative overflow-hidden mb-16 mx-auto w-full max-w-3xl">
-            {/* Gradient overlays for easing on sides */}
             <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-white to-transparent z-10" />
             <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-white to-transparent z-10" />
 
-            {/* Scrolling container */}
             <div className="whitespace-nowrap flex animate-scroll gap-12">
               {[...companyLogos, ...companyLogos].map((logo, index) => (
                 <div
@@ -56,7 +66,26 @@ export const HeroSection = () => {
             </div>
           </div>
         </div>
-        <img src={Img1} alt="Img1" className="w-45 object-contain" />
+
+        {/* 🔥 Video Section with Hover Controls */}
+        <div
+          className="relative w-full max-w-3xl mx-auto group"
+          onClick={togglePlay}
+        >
+          <video
+            ref={videoRef}
+            src={video1}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full rounded-lg object-cover"
+          />
+          {/* Play/Pause button on hover */}
+          <button className="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            {isPaused ? "▶" : "⏸"}
+          </button>
+        </div>
       </div>
     </section>
   );
