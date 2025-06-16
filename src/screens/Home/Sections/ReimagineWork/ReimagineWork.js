@@ -35,8 +35,8 @@ const features = [
 export default function ReimagineWork() {
   return (
     <div className="pt-20 bg-white text-gray-800">
-      <div className="text-center px-4 md:px-10">
-        <h1 className="text-4xl md:text-[32px] font-500 mb-10">
+      <div className="text-center ">
+        <h1 className="text-4xl md:text-[32px] font-500 mb-10 px-4 md:px-10">
           <span className="bg-gradient-to-r from-[#00C2D1] to-[#2684FF] bg-clip-text text-transparent font-500">
             Reimagine Work
           </span>
@@ -56,8 +56,12 @@ export default function ReimagineWork() {
                   alt={`Feature ${idx + 1}`}
                   className="w-[60px] h-[60px] object-contain"
                 />
-                <h3 className="text-[24px] font-500 mt-8 mb-4 text-left min-h-[56px] border-b-2 pb-5">
-                  {feature.title}
+                <h3 className="text-[22px] font-500 mt-8 mb-4 text-left min-h-[56px] border-b-2 pb-5">
+                  <p>
+                    {feature.title.split(" ").slice(0, 4).join(" ")}
+                    <br />
+                    {feature.title.split(" ").slice(4).join(" ")}
+                  </p>
                 </h3>
 
                 <p className="text-[16px] text-gray-600 font-400 text-left min-h-[10px]">

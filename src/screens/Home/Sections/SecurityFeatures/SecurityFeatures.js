@@ -42,27 +42,52 @@ const features = [
 const SecurityFeatures = () => {
   return (
     <div className="bg-white py-16 px-4 sm:px-8 lg:px-24 text-center">
-      <h3 className="text-sm text-gray-500 mb-2">Trust & Security</h3>
-      <h2 className="text-3xl sm:text-4xl font-semibold text-blue-600 mb-2">
+      <p className="text-[16px] text-gray-400 mb-1 text-center">
+        Trust & Security
+      </p>
+      <span className="bg-gradient-to-r from-[#00C2D1] to-[#2684FF] bg-clip-text text-transparent font-500 text-[48px]">
         Enterprise-Grade Trust.
-      </h2>
-      <h2 className="text-2xl sm:text-3xl font-bold text-black mb-12 underline decoration-2 decoration-black">
+      </span>
+      <br />
+      <span className=" text-black  font-500 text-[48px]">
         Autonomous-Ready Security.
-      </h2>
+      </span>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-y-12 gap-x-8 max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-y-12 gap-x-8 max-w-7xl mx-auto mt-20">
         {features.map((feature, index) => (
           <div
             key={index}
             className="flex flex-col items-center text-center px-4"
           >
-            <div className="rounded-full border border-blue-200 shadow-md w-20 h-20 flex flex-col items-center justify-center text-xs font-semibold text-gray-700 mb-4">
-              <span className="text-gray-500">{feature.label}</span>
-              <span className="text-black text-sm">{feature.badge}</span>
-              <span className="text-gray-500">Certificate</span>
+            <div className="rounded-full p-[2px] bg-gradient-to-r from-[#00C2D1] to-[#2684FF] w-20 h-20 shadow-md mb-4">
+              <div className="rounded-full bg-white w-full h-full flex flex-col items-center justify-center text-xs font-semibold text-gray-700">
+                <span className="text-gray-500 text-[8px]">
+                  {feature.label}
+                </span>
+
+                <div className="flex flex-col items-center w-full px-1">
+                  {/* Top line */}
+                  <div className="w-full h-px bg-gray-300 mb-1" />
+
+                  {/* Text */}
+                  <span className="text-black text-[13.5px] whitespace-nowrap">
+                    {feature.badge}
+                  </span>
+
+                  {/* Bottom line */}
+                  <div className="w-full h-px bg-gray-300 mt-1" />
+                </div>
+
+                <span className="text-gray-500 text-[8px]">Certificate</span>
+              </div>
             </div>
-            <h4 className="font-semibold text-lg">{feature.title}</h4>
-            <p className="text-sm text-gray-600 mt-2">{feature.description}</p>
+
+            <h4 className="font-500 text-[18px]  mt-2">{feature.title}</h4>
+            <p className="text-[14px] text-black text-opacity-60 mt-1">
+              {feature.description.split(" ").slice(0, 4).join(" ")}
+              <br />
+              {feature.description.split(" ").slice(4).join(" ")}
+            </p>
           </div>
         ))}
       </div>

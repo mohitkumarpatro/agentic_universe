@@ -1,28 +1,26 @@
 import React from "react";
+import img1 from "./Images/Group 1321317731.png";
 
-const features = [
+const cards = [
   {
     title: "Cognitive Architecture",
-    icon: "🔌",
+    icon: img1,
     description: "Agents reason, recall, and plan – not just respond",
   },
   {
-    title: "Multi-Agent Collaboration",
-    icon: "🔌",
-    description:
-      "Assign agents to different departments or workflows – they work together, not in isolation",
+    title: "System Integrators",
+    icon: img1,
+    description: "Agents reason, recall, and plan – not just respond",
   },
   {
-    title: "Real-Time Data Sync",
-    icon: "🔌",
-    description:
-      "Context-aware action across live systems – not disconnected triggers",
+    title: "Hardware & Tech Partners",
+    icon: img1,
+    description: "Agents reason, recall, and plan – not just respond",
   },
   {
-    title: "Autonomous Action",
-    icon: "🔌",
-    description:
-      "Agents initiate complex actions across systems without human prompts",
+    title: "Enterprise Ready",
+    icon: img1,
+    description: "Agents reason, recall, and plan – not just respond",
   },
 ];
 
@@ -30,33 +28,53 @@ export default function EnterpriseCognition() {
   return (
     <section className="bg-white text-black py-20 px-4">
       {/* Text Section */}
-      <div className="text-center max-w-3xl mx-auto mb-16">
-        <p className="text-gray-500 text-sm mb-2">
-          A New Blueprint for How AI Gets Work Done
-        </p>
-        <h2 className="text-3xl sm:text-5xl font-semibold leading-tight">
+      <p className="text-[16px] text-gray-400 mb-1 text-center">
+        A New Blueprint for How AI Gets Work Done
+      </p>
+      <div className="text-center max-w-3xl mx-auto mb-16 text-[48px] font-500">
+        <span className="text-black font-500 text-[48px]">
           More than automation. This is{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-600">
-            enterprise-grade
-          </span>{" "}
-          cognition.
-        </h2>
+        </span>
+        <br />
+        <span className="bg-gradient-to-r from-[#00C2D1] to-[#2684FF] bg-clip-text text-transparent font-500 text-[48px]">
+          enterprise-grade
+        </span>{" "}
+        cognition.
       </div>
 
       {/* Grid Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-        {features.map((feature, index) => (
-          <div
-            key={index}
-            className="bg-gradient-to-b from-cyan-300 to-cyan-500 text-white rounded-xl p-6 flex flex-col items-center shadow-lg"
-          >
-            <div className="mb-4">{feature.icon}</div>
-            <h3 className="text-lg font-semibold mb-2 text-center">
-              {feature.title}
-            </h3>
-            <p className="text-sm text-center">{feature.description}</p>
-          </div>
-        ))}
+      <div className="overflow-x-auto">
+        <div
+          className="flex gap-6 px-4"
+          // style={{ width: "max-content" }}
+        >
+          {cards.map((card, idx) => (
+            <div
+              key={idx}
+              className="bg-gray-50 rounded-xl shadow-sm p-5 px-4 flex-shrink-0 flex flex-col items-center text-center hover:shadow-md transition"
+              style={{ minWidth: "calc(100% / 3.3)" }} // 3 cards + half of 4th
+            >
+              {/* Title - single line, aligned start, with ellipsis if overflow */}
+              <h3 className="text-[#080808] text-[24px] font-50 w-full text-start whitespace-nowrap overflow-hidden text-ellipsis">
+                {card.title}
+              </h3>
+
+              {/* Description - single line, aligned start, with ellipsis if overflow */}
+
+              {/* Image */}
+              <p className="my-5 ">
+                <img
+                  src={card.icon}
+                  alt="Img1"
+                  className="w-full h-full object-contain"
+                />
+              </p>
+              <p className="text-[16px] text-[#080808CC] mt-1 w-full text-start whitespace-nowrap overflow-hidden text-ellipsis">
+                {card.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

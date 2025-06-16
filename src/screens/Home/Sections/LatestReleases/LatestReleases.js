@@ -1,26 +1,24 @@
 import React, { useState } from "react";
+import Img1 from "./Images/Group 1321317597.png";
 
 const releases = [
   {
     title: "Endex",
-    image:
-      "https://carzonwheel.com/_next/image?url=https%3A%2F%2Fimg.carzonwheel.com%2Fuploads%2Fmahindra_scorpio_classic_1.webp&w=1920&q=60", // replace with real image
+    image: Img1,
     desc: "Computer-Using Agent",
     date: "Dec 12, 2024",
     borderColor: "border-blue-500",
   },
   {
     title: "ALTERA",
-    image:
-      "https://carzonwheel.com/_next/image?url=https%3A%2F%2Fimg.carzonwheel.com%2Fuploads%2Fmahindra_scorpio_classic_2.webp&w=384&q=50",
+    image: Img1,
     desc: "Computer-Using Agent",
     date: "Dec 12, 2024",
     borderColor: "",
   },
   {
     title: "Zendesk",
-    image:
-      "https://carzonwheel.com/_next/image?url=https%3A%2F%2Fimg.carzonwheel.com%2Fuploads%2Fmahindra_scorpio_classic_3.webp&w=384&q=50",
+    image: Img1,
     desc: "Computer-Using Agent",
     date: "Dec 12, 2024",
     borderColor: "",
@@ -41,18 +39,21 @@ export default function LatestReleases() {
   const visibleReleases = expanded ? releases : releases.slice(0, 3);
 
   return (
-    <div className="py-10 px-4 md:px-10">
+    <div className="py-20 px-4 md:px-[100px]">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <p className="text-sm text-gray-500">News</p>
-          <h2 className="text-2xl font-semibold">
-            <span className="text-blue-500">Latest</span>{" "}
-            <span className="text-black">Releases</span>
-          </h2>
+          <p className="text-[16px] text-gray-400 mb-1">News</p>
+
+          <h1 className="text-[48px] font-500 mb-10">
+            <span className="bg-gradient-to-r from-[#00C2D1] to-[#2684FF] bg-clip-text text-transparent font-500">
+              Latest
+            </span>
+            <span className="text-[#080808] font-500 ml-3">Releases </span>
+          </h1>
         </div>
         <button
           onClick={() => setExpanded(!expanded)}
-          className="text-gray-600 hover:text-black text-sm"
+          className="text-gray-600 hover:text-black text-[16px] underline pr-5"
         >
           {expanded ? "Show Less" : "View All"}
         </button>
@@ -61,17 +62,15 @@ export default function LatestReleases() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {visibleReleases.map((release, index) => (
           <div key={index} className="flex flex-col">
-            <div
-              className={`rounded-xl overflow-hidden border-4 ${release.borderColor}`}
-            >
+            <div className={`rounded-xl overflow-hidden`}>
               <img
                 src={release.image}
                 alt={release.title}
-                className="w-full h-48 object-cover"
+                className="w-[464px] h-[440px] object-cover"
               />
             </div>
-            <h3 className="text-base font-semibold mt-3">{release.desc}</h3>
-            <p className="text-sm text-gray-500">{release.date}</p>
+            <h3 className="text-[20px] font-500 mt-5">{release.desc}</h3>
+            <p className="text-[14px] text-[#080808]">{release.date}</p>
           </div>
         ))}
       </div>
