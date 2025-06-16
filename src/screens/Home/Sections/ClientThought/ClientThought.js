@@ -1,4 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Mousewheel } from "swiper/modules";
+import "swiper/css/mousewheel";
+import "swiper/css";
+import "swiper/css/navigation";
 
 const testimonials = [
   {
@@ -36,54 +41,78 @@ const testimonials = [
     company: "ZARA",
     avatar: "https://randomuser.me/api/portraits/men/66.jpg",
   },
+  {
+    text: `“It's unimaginable to go back to a time before Agentic Universe where we'd have to take notes during the interviews. Agentic Universe has taken so much guesswork out of improving our processes.”`,
+    author: "Liam Smith",
+    handle: "@stripe",
+    company: "ZARA",
+    avatar: "https://randomuser.me/api/portraits/men/66.jpg",
+  },
+  {
+    text: `“It's unimaginable to go back to a time before Agentic Universe where we'd have to take notes during the interviews. Agentic Universe has taken so much guesswork out of improving our processes.”`,
+    author: "Liam Smith",
+    handle: "@stripe",
+    company: "ZARA",
+    avatar: "https://randomuser.me/api/portraits/men/66.jpg",
+  },
+  {
+    text: `“It's unimaginable to go back to a time before Agentic Universe where we'd have to take notes during the interviews. Agentic Universe has taken so much guesswork out of improving our processes.”`,
+    author: "Liam Smith",
+    handle: "@stripe",
+    company: "ZARA",
+    avatar: "https://randomuser.me/api/portraits/men/66.jpg",
+  },
+  {
+    text: `“It's unimaginable to go back to a time before Agentic Universe where we'd have to take notes during the interviews. Agentic Universe has taken so much guesswork out of improving our processes.”`,
+    author: "Liam Smith",
+    handle: "@stripe",
+    company: "ZARA",
+    avatar: "https://randomuser.me/api/portraits/men/66.jpg",
+  },
+  {
+    text: `“It's unimaginable to go back to a time before Agentic Universe where we'd have to take notes during the interviews. Agentic Universe has taken so much guesswork out of improving our processes.”`,
+    author: "Liam Smith",
+    handle: "@stripe",
+    company: "ZARA",
+    avatar: "https://randomuser.me/api/portraits/men/66.jpg",
+  },
 ];
 
-const visibleCards = 3;
-
 export default function ClientThought() {
-  const [startIndex, setStartIndex] = useState(0);
-  const [activeBtn, setActiveBtn] = useState(null); // 'prev' or 'next'
+  const [activeBtn, setActiveBtn] = useState(null);
+  const swiperRef = useRef(null);
 
   const nextSlide = () => {
     setActiveBtn("next");
-    setStartIndex((prev) => (prev + 1) % testimonials.length);
-    setTimeout(() => setActiveBtn(null), 200); // reset after 200ms
+    swiperRef.current?.slideNext();
+    setTimeout(() => setActiveBtn(null), 200);
   };
 
   const prevSlide = () => {
     setActiveBtn("prev");
-    setStartIndex(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
+    swiperRef.current?.slidePrev();
     setTimeout(() => setActiveBtn(null), 200);
   };
-
-  const getVisibleTestimonials = () => {
-    return Array.from({ length: visibleCards }, (_, i) => {
-      return testimonials[(startIndex + i) % testimonials.length];
-    });
-  };
-
   return (
-    <section className="relative bg-black text-white py-20">
+    <section className="relative bg-[#080808] text-white py-20 overflow-hidden">
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/3 w-[800px] h-[80px] 
-       bg-gradient-to-r from-[#00C2D1] to-[#00C2D100] 
-       rounded-full blur-2xl opacity-70"
+        className="absolute top-0 left-1/2 -translate-x-1/2 bg-cover bg-center w-full max-w-xl rounded-3xl shadow-2xl h-[280px] flex justify-center items-center"
+        style={{ backgroundImage: `url("/Ellipse 8520.png")` }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <p className="text-[16px] uppercase text-gray-400 mb-8">
+      <div className="max-w-8xl mx-auto px-6 text-center">
+        <p className="text-[16px] uppercase text-gray-400 mb-6">
           Agentic Universe
         </p>
-        <h2 className="text-3xl sm:ext-[48px] font-500">
+        <h2 className="text-3xl sm:text-[48px] font-500 mb-10">
           Hear what our{" "}
           <span className="bg-gradient-to-r from-[#00C2D1] to-[#2684FF] bg-clip-text text-transparent">
             Clients
           </span>{" "}
-          Saying
+          are Saying
         </h2>
-        <div className="flex justify-center space-x-2 mt-4 mb-10">
+
+        <div className="flex justify-center space-x-2 my-10">
           {testimonials.slice(0, 4).map((t, idx) => (
             <img
               key={idx}
@@ -94,14 +123,17 @@ export default function ClientThought() {
           ))}
         </div>
 
-        {/* Carousel Cards */}
-        <div className="overflow-hidden mt-10">
-          <div className="flex flex-wrap justify-center gap-4 mt-4 mb-10">
-            {getVisibleTestimonials().map((t, idx) => (
-              <div
-                key={idx}
-                className="bg-[#111] rounded-xl p-6 sm:p-8 md:p-10 text-left border border-gray-800 min-h-[280px] flex flex-col justify-between w-full sm:w-[80%] md:w-[45%] lg:w-[30%]"
-              >
+        <Swiper
+          modules={[Navigation, Mousewheel]}
+          slidesPerView={4}
+          spaceBetween={20}
+          mousewheel={{ forceToAxis: true }}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          className="!overflow-visible"
+        >
+          {testimonials.map((t, idx) => (
+            <SwiperSlide key={idx}>
+              <div className="bg-[#111] rounded-xl p-6 sm:p-8 md:p-10 text-left border border-gray-800 min-h-[280px] flex flex-col justify-between w-full cursor-pointer transition-transform hover:scale-[1.02]">
                 <p className="text-[16px] mb-4">{t.text}</p>
                 <div className="flex items-center space-x-3 mt-8">
                   <img
@@ -109,35 +141,41 @@ export default function ClientThought() {
                     alt={t.author}
                     className="w-10 h-10 rounded-full"
                   />
-                  <div className="text-left">
-                    <p className="text-[16px]">
-                      {t.author} {t.handle} &nbsp;&bull;&nbsp; {t.company}
-                    </p>
+                  <div className="flex justify-between text-[16px] w-full">
+                    <div className="flex flex-col">
+                      <div className="flex items-center flex-shrink-0 gap-2">
+                        <span>{t.author}</span>
+                        <div className="w-[6px] h-[6px] bg-gradient-to-tr from-[#00C2D1] to-[#2684FF] rounded-full" />
+                      </div>
+                      <span className="whitespace-nowrap">{t.handle}</span>
+                    </div>
+                    <span className="text-right whitespace-nowrap">
+                      {t.company}
+                    </span>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
-        {/* Arrows */}
         <div className="mt-10 flex justify-center items-center space-x-4">
           <button
             onClick={prevSlide}
-            className={`w-10 h-10 rounded-full flex items-center justify-center text-white transition-colors duration-200 ${
+            className={`w-[50px] h-[50px] rounded-full flex items-center justify-center text-white transition-colors duration-200 text-[24px] ${
               activeBtn === "prev"
-                ? "bg-sky-500"
-                : "bg-gray-800 hover:bg-gray-700"
+                ? "bg-[#00C2D1]"
+                : "bg-[#080808] hover:bg-gray-700 border-gray-800 border"
             }`}
           >
             ←
           </button>
           <button
             onClick={nextSlide}
-            className={`w-10 h-10 rounded-full flex items-center justify-center text-white transition-colors duration-200 ${
+            className={`w-[50px] h-[50px] rounded-full flex items-center justify-center text-white transition-colors duration-200 text-[24px] ${
               activeBtn === "next"
-                ? "bg-sky-500"
-                : "bg-gray-800 hover:bg-gray-700"
+                ? "bg-[#00C2D1]"
+                : "bg-[#080808] hover:bg-gray-700 border-gray-800 border"
             }`}
           >
             →
