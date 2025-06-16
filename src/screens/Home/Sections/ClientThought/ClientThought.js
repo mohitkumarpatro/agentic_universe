@@ -4,6 +4,8 @@ import { Navigation, Mousewheel } from "swiper/modules";
 import "swiper/css/mousewheel";
 import "swiper/css";
 import "swiper/css/navigation";
+import LeftArrow from "./Images/LeftArrow.svg";
+import RightArrow from "./Images/RightArrow.svg";
 
 const testimonials = [
   {
@@ -96,7 +98,7 @@ export default function ClientThought() {
   return (
     <section className="relative bg-[#080808] text-white py-20 overflow-hidden">
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 bg-cover bg-center w-full max-w-xl rounded-3xl shadow-2xl h-[280px] flex justify-center items-center"
+        className="absolute top-0 left-1/2 -translate-x-1/2 bg-cover bg-center w-full max-w-xl rounded-3xl shadow-2xl h-[150px] flex justify-center items-center"
         style={{ backgroundImage: `url("/Ellipse 8520.png")` }}
       />
 
@@ -133,7 +135,7 @@ export default function ClientThought() {
         >
           {testimonials.map((t, idx) => (
             <SwiperSlide key={idx}>
-              <div className="bg-[#111] rounded-xl p-6 sm:p-8 md:p-10 text-left border border-gray-800 min-h-[280px] flex flex-col justify-between w-full cursor-pointer transition-transform hover:scale-[1.02]">
+              <div className="bg-[#111] rounded-xl p-6 sm:p-8 md:p-10 text-left  min-h-[280px] flex flex-col justify-between w-full cursor-pointer">
                 <p className="text-[16px] mb-4">{t.text}</p>
                 <div className="flex items-center space-x-3 mt-8">
                   <img
@@ -147,9 +149,9 @@ export default function ClientThought() {
                         <span>{t.author}</span>
                         <div className="w-[6px] h-[6px] bg-gradient-to-tr from-[#00C2D1] to-[#2684FF] rounded-full" />
                       </div>
-                      <span className="whitespace-nowrap">{t.handle}</span>
+                      <span className="whitespace-nowrap text-opacity-40 text-[#FFFFFF66]">{t.handle}</span>
                     </div>
-                    <span className="text-right whitespace-nowrap">
+                    <span className="text-right whitespace-nowrap text-opacity-40 text-[#FFFFFF66]">
                       {t.company}
                     </span>
                   </div>
@@ -165,20 +167,28 @@ export default function ClientThought() {
             className={`w-[50px] h-[50px] rounded-full flex items-center justify-center text-white transition-colors duration-200 text-[24px] ${
               activeBtn === "prev"
                 ? "bg-[#00C2D1]"
-                : "bg-[#080808] hover:bg-gray-700 border-gray-800 border"
+                : "bg-[#F8F8F80D] hover:bg-[#00C2D1]"
             }`}
           >
-            ←
+            <img
+              src={LeftArrow}
+              alt="LeftArrow"
+              className="w-[20px] h-[20px] object-contain"
+            />
           </button>
           <button
             onClick={nextSlide}
             className={`w-[50px] h-[50px] rounded-full flex items-center justify-center text-white transition-colors duration-200 text-[24px] ${
               activeBtn === "next"
                 ? "bg-[#00C2D1]"
-                : "bg-[#080808] hover:bg-gray-700 border-gray-800 border"
+                : "bg-[#F8F8F80D] hover:bg-[#00C2D1]"
             }`}
           >
-            →
+            <img
+              src={RightArrow}
+              alt="RightArrow"
+              className="w-[20px] h-[20px] object-contain"
+            />
           </button>
         </div>
       </div>
